@@ -17,7 +17,7 @@ def upload_to_gcs(local_file_path, bucket_name, gcs_blob_path):
 
 def main():
     bucket_name = os.getenv("GCS_BUCKET", "mlops-506205-nexoraai-mlops")
-    mlflow.set_tracking_uri(f"gs://{bucket_name}/mlruns")
+    mlflow.set_tracking_uri("file:./mlruns")
     mlflow.set_experiment("nexoraai-fraud-detection")
 
     X, y = make_classification(
