@@ -7,6 +7,6 @@ spec:
     spec:
       containers:
       - name: trainer
-        image: us-central1-docker.pkg.dev/mlops-506205/nexoraai-mlops/trainer:v2
+        image: us-central1-docker.pkg.dev/mlops-506205/nexoraai-mlops/trainer:v6
       restartPolicy: Never
   backoffLimit: 1
