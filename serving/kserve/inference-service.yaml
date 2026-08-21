@@ -8,4 +8,22 @@ spec:
     model:
       modelFormat:
         name: sklearn
-      storageUri: gs://mlops-506205-nexoraai-mlops/artifacts/
+      storageUri: gs://mlops-506205-nexoraai-mlops/models/
+      volumeMounts:
+        - name: kserve-provision-location
+          mountPath: /mnt/models
+    initContainers:
+      - name: storage-initializer
+        image: google/cloud-sdk:slim
+        command:
+          - sh
+          - -c
+          - |
+            mkdir -p /mnt/models
+            gsutil cp gs://mlops-506205-nexoraai-mlops/models/fraud_model.pkl /mnt/models/model.pkl
+        volumeMounts:
+          - name: kserve-provision-location
+            mountPath: /mnt/models
+    volumes:
+      - name: kserve-provision-location
+        emptyDir: {}
