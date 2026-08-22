@@ -4,15 +4,20 @@ export default async function handler(req, res) {
   }
 
   try {
-    const response = await fetch('https://b59a9b37508b0591-136-116-223-48.serveousercontent.com/v1/models/fraud-model:predict', {
+    // Replace this URL with your currently active Serveo tunnel URL from GKE
+    const KSERVE_URL = 'https://YOUR-ACTIVE-SERVEO-URL.serveousercontent.com/v1/models/fraud-model:predict';
+
+    const response = await fetch(KSERVE_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(req.body),
     });
 
     const data = await response.json();
-    return res.status(response.status).json(data);
+    return res.status(200).json(data);
   } catch (error) {
-    return res.status(500).json({ error: 'Failed to connect to model predictor' });
+    return res.status(500).json({ error: 'Failed to connect to model predictor', details: error.message });
   }
 }
