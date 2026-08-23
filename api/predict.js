@@ -4,7 +4,7 @@ xport default async function handler(req, res) {
   }
 
   try {
-    const response = await fetch('https://6bda54b67dfd29db-34-171-165-19.serveousercontent.com/v1/models/fraud-model:predict', {
+    const response = await fetch('https://77bfcb45a0602fe7-34-171-165-19.serveousercontent.com/v1/models/fraud-model:predict', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(req.body),
