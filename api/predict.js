@@ -1,10 +1,10 @@
-export default async function handler(req, res) {
+xport default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
   try {
-    const response = await fetch('https://b59a9b37508b0591-136-116-223-48.serveousercontent.com/v1/models/fraud-model:predict', {
+    const response = await fetch('https://6bda54b67dfd29db-34-171-165-19.serveousercontent.com/v1/models/fraud-model:predict', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(req.body),
