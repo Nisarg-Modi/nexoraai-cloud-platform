@@ -4,7 +4,9 @@ xport default async function handler(req, res) {
   }
 
   try {
-    const response = await fetch('https://da3082f60609ac31-34-171-165-19.serveousercontent.com/v1/models/fraud-model:predict', {
+    const KSERVE_URL = process.env.KSERVE_ENDPOINT;
+
+    const response = await fetch(KSER_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(req.body),
