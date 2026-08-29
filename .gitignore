@@ -3,3 +3,6 @@ venv/
 *.db
 mlruns/
 artifacts/
+
+# Python virtual environment
+venv-model/
