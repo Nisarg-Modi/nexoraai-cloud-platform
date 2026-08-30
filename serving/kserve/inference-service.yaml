@@ -3,31 +3,21 @@ kind: InferenceService
 metadata:
   name: fraud-model
   namespace: mlops
-  annotations:
-    prometheus.kserve.io/enable-prometheus-scraping: "true"
-    prometheus.kserve.io/port: "8080"
-    prometheus.kserve.io/path: "/metrics"
+
 spec:
   predictor:
     model:
       modelFormat:
         name: sklearn
-      storageUri: gs://mlops-506205-nexoraai-mlops/models/
-      volumeMounts:
-        - name: kserve-provision-location
-          mountPath: /mnt/models
-    initContainers:
-      - name: storage-initializer
-        image: google/cloud-sdk:slim
-        command:
-          - sh
-          - -c
-          - |
-            mkdir -p /mnt/models
-            gsutil cp gs://mlops-506205-nexoraai-mlops/models/fraud_model.pkl /mnt/models/model.pkl
-        volumeMounts:
-          - name: kserve-provision-location
-            mountPath: /mnt/models
-    volumes:
-      - name: kserve-provision-location
-        emptyDir: {}
+      protocolVersion: v2
+      runtime: kserve-sklearnserver
+
+      storageUri: gs://mlops-506205-nexoraai-mlops/models/fraud_model/
+
+      resources:
+        requests:
+          cpu: "100m"
+          memory: "512Mi"
+        limits:
+          cpu: "1"
+          memory: "1Gi"
