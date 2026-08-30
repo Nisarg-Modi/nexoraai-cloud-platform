@@ -9,3 +9,13 @@ venv-model/
 kserve-sklearn/venv-model/
 **/venv-model/
 *.pkl
+
+venv-model/
+venv-kserve/
+__pycache__/
+*.pyc
+
+venv-model/
+venv-kserve/
+__pycache__/
+*.pyc
