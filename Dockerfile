@@ -1,6 +1,6 @@
-FROM python:3.12-slim
-WORKDIR /app
-COPY ml/training/requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-COPY ml/training/ train/
-CMD ["python", "train/train.py"]
+FROM kserve/sklearnserver:v0.13.0
+
+RUN pip install --no-cache-dir \
+    numpy==1.26.4 \
+    scikit-learn==1.3.0 \
+    joblib==1.3.2

@@ -6,3 +6,6 @@ artifacts/
 
 # Python virtual environment
 venv-model/
+kserve-sklearn/venv-model/
+**/venv-model/
+*.pkl

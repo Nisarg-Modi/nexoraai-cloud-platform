@@ -6,6 +6,12 @@ xport default async function handler(req, res) {
   try {
     const KSERVE_URL = process.env.KSERVE_ENDPOINT;
 
+   if (!KSERVE_URL) {
+     return res.status(500).json({
+       error: 'KSERVE_ENDPOINT is not configured'
+     });
+   }
+
     const response = await fetch(KSER_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

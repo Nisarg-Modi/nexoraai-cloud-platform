@@ -5,8 +5,16 @@ metadata:
   namespace: mlops
 spec:
   predictor:
-    serviceAccountName: default
     model:
       modelFormat:
         name: sklearn
-      storageUri: gs://<your-bucket>/fraud-model/
+      protocolVersion: v2
+      runtime: kserve-sklearnserver
+      storageUri: gs://mlops-506205-nexoraai-mlops/models/fraud-model/
+      resources:
+        requests:
+          cpu: "100m"
+          memory: "512Mi"
+        limits:
+          cpu: "1"
+          memory: "1Gi"
